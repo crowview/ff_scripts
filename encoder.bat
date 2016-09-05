@@ -38,7 +38,7 @@ if "%1" == "test" goto test
 
 :final
 
-echo mode: 		test >> encode_log.txt
+echo mode: 		booru >> encode_log.txt
 
 if exist *_test.mp4 del *_test.mp4
 
@@ -58,7 +58,7 @@ goto play
 
 :test
 
-echo mode: 		booru >> encode_log.txt
+echo mode: 		test >> encode_log.txt
 
 rem 	fast encoding to test times. do not upload
 ffmpeg -ss %start% -i "%input%" -t %duration% -an -sn -vf scale="trunc(oh*a/2)*2:480" -crf 40 -c:v libx264 -preset veryfast -tune animation -y %output%_test.mp4
