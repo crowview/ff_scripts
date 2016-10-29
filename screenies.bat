@@ -1,16 +1,16 @@
 @echo off
 rem 	for screencapping genga/douga credits
 
-rem 	directory can't have japanese chars but file can?
 set dirpath=.\folderthatholdsanimevideos
-set credtime=22:45
-set append=genga
+set credtime=23:57
+set append=_genga
 set i=0
 echo Working...
-setlocal ENABLEDELAYEDEXPANSION
-for %%f in ("%dirpath%"\*.*) do (
-ffmpeg -v error -ss %credtime% -i "%%f" -vframes 1 -y "%%~nf"%append%.jpg 
-if exist "%%~nf"%append%.jpg set /a i=i+1
+for %%f in ("%dirpath%\*.*") do (
+    set "infile=%%~nf"
+    set "extn=%%~xf"
+    setlocal ENABLEDELAYEDEXPANSION
+    ffmpeg -v error -ss %credtime% -i "%dirpath%\!infile!!extn!" -vframes 1 -y "!infile!"%append%.jpg 
+    if not exist "!infile!"%append%.jpg echo Failed to create !infile!%append%.jpg
+    endlocal
 )
-echo Created %i% images.
-endlocal
