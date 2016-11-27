@@ -1,3 +1,4 @@
+@echo off
 REM probe.bat
 
 IF "%1"=="" (
